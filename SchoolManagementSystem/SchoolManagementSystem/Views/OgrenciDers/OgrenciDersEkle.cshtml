@@ -1,0 +1,46 @@
+﻿@model SchoolManagementSystem.Models.OgrenciDers
+
+@{
+    ViewData["Title"] = "ÖĞRENCİ DERS EKLE";
+}
+<br />
+<center>
+    <h1>ÖĞRENCİ DERS EKLE</h1><hr />
+    <br /><br />
+</center>
+
+<div class="content">
+    <div class="row" style="margin-left:500px; ">
+    <div class="col-md-4">
+            <form asp-action="Ekle">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            
+            <div class="form-group">
+                <label asp-for="DersDef.Ad" class="control-label">DERSİN ADI</label>
+                    <input asp-for="DersDef.Ad" class="form-control" />
+                    <span asp-validation-for="DersDef.Ad" class="text-danger"></span>
+                </div><br />
+            <div class="form-group">
+                <label asp-for="OgrenciDef.AdSoyad" class="control-label">ÖĞRENCİNİN ADI</label>
+                    <input asp-for="OgrenciDef.AdSoyad" class="form-control" />
+                    <span asp-validation-for="OgrenciDef.AdSoyad" class="text-danger"></span>
+                </div><br />
+                <center>
+                    <div class="form-group">
+                        <input type="submit" value="EKLE" class="btn btn-primary" />
+                    </div>
+                </center><br />
+        </form>
+    </div>
+</div>
+   <center>
+            <div>
+                
+                <a href="/OgrenciDers/Index"><input type="submit" class="btn btn-primary" value="Listeleme Sayfasına Dön" /></a>
+            </div>
+    </center>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,59 @@
+﻿@model IEnumerable<SchoolManagementSystem.Models.Ders>
+
+@{
+    ViewData["Title"] = "DERSLER LİSTESİ";
+}
+<div class="arama">
+    <form action="Index">
+        <label for="name">Ders Ad</label>
+        <input type="text" id="name" name="name">
+        <input type="submit" value="ARA">
+    </form>
+</div>
+<br />
+<br />
+<center>
+    <h1> DERSLER LİSTESİ</h1>
+</center>
+<br />
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
+
+                    <thead>
+                        <tr>
+                            <th>Ders Adı</th>
+                        <th>Ders Kredisi</th>
+                            <th colspan="3">Dersin Öğretmeni</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Ad)</td>
+                            <td>@Html.DisplayFor(modelItem => item.Kredisi)</td>
+                            <td>@Html.DisplayFor(modelItem => item.OkulYonetimDef.AdSoyad)</td>
+                                <td>
+                                    @*
+                                Burada başka bir sayfaya yönlendirme olarak ActionLink yapısını kullandık. İlk önce linkimizin metini, gideceğimiz metodun ismi ve en son new adı altında bir parametre tanımlıyoruz.
+                                Bu sayfadaki değerleri göndereceğimiz linkde görebilmemiz için burada yeni bir parametre tanımladık.
+                                *@
+                                    @Html.ActionLink("Güncelle", "DersGuncelle", new {   id=item.Id  },new {@style="color:black; text-decoration: none;" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sil", "DersSil", new { id=item.Id  },new {@style="color:black; text-decoration: none;" })
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

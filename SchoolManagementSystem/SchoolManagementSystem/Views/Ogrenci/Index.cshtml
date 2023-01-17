@@ -1,0 +1,65 @@
+﻿@model IEnumerable<SchoolManagementSystem.Models.Ogrenci>
+
+@{
+    ViewData["Title"] = "ÖĞRENCİ LİSTELE";
+}
+
+<div class="arama">
+    <form action="Index">
+                        <label for="name">Ad Soyad</label>
+                        <input type="text" id="name" name="name">
+                        <input type="submit" value="ARA">
+                    </form>
+</div>
+<br />
+<br />
+<center>
+    <h1> ÖĞRENCİLER LİSTESİ</h1>
+</center><br />
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="table-responsive" data-pattern="priority-columns">
+                <table summary="This table shows how to create responsive tables using RWD-Table-Patterns' functionality" class="table table-bordered table-hover">
+                    
+                    <thead>
+                        <tr>
+                            <th>Ad Soyad</th>
+                            <th data-priority="1">Kayıt Tarihi</th>
+                            <th data-priority="2">Öğrenci No</th>
+                            <th data-priority="3">Doğum Tarihi</th>
+                            <th data-priority="4" colspan="3">Bölümü</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.AdSoyad)</td>
+                                <td>@Html.DisplayFor(modelItem => item.KayitTarih)</td>
+                                <td>@Html.DisplayFor(modelItem => item.OgrenciNo)</td>
+                                <td>@Html.DisplayFor(modelItem => item.DTarih)</td>
+                                <td>@Html.DisplayFor(modelItem => item.Bolum)</td>
+                                <td>
+                                    @*
+                            Burada başka bir sayfaya yönlendirme olarak ActionLink yapısını kullandık. İlk önce linkimizin metini, gideceğimiz metodun ismi ve en son new adı altında bir parametre tanımlıyoruz.
+                            Bu sayfadaki değerleri göndereceğimiz linkde görebilmemiz için burada yeni bir parametre tanımladık.
+                            *@
+                                    @Html.ActionLink("Güncelle", "OgrenciGuncelle", new {   id=item.Id  },new {@style="color:black; text-decoration: none;" })
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Sil", "OgrenciSil", new { id=item.Id  },new {@style="color:black; text-decoration: none;" })
+                                </td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                    
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
